@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Classificador de Extinção de Incêndio</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+  
+</head>
+
+<body style="background: red">
+ <div class="login">
+  <!--<img src="../imagem/img.jpg" width="150" height="70">-->
+	<h1>Classificador de Extinção de Incêndio</h1>
+  
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+    <input type="text" name="SIZE" placeholder="TAMANHO" required="required" />
+    <input type="text" name="DISTANCE" placeholder="DISTANCIA" required="required" />
+		<input type="text" name="DESIBEL" placeholder="DESIBEL" required="required" />
+		<input type="text" name="AIRFLOW" placeholder="AIRFLOW" required="required" />
+    <input type="text" name="FREQUENCY" placeholder="FREQUENCIA" required="required" />
+
+        <!--class="btn btn-primary btn-block btn-large"-->
+        <button type="submit" class="btnSubmit">Classificar Extinção Incendio</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
