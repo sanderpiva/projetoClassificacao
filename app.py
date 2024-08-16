@@ -18,12 +18,12 @@ def predict():
     features = [float(x) for x in request.form.values()]
     final_features = [np.array(features)]
     pred = model.predict(final_features)
-    output = ("Não extinção do incêndio" if pred[0] == 0 else "Extinção do incêndio") 
-    return render_template("index.html", prediction_text="Res: " + str(output))
+    output = ("NAO EVADE" if pred[0] == 0 else "EVADE") 
+    return render_template("index.html", prediction_text=str(output))
 
 @app.route("/api", methods=["POST"])
 def results():
     data = request.get_json(force=True)
     pred = model.predict([np.array(list(data.values()))])
-    output = ("Não extinção do incêndio" if pred[0] == 0 else "Extinção do incêndio")
+    output = ("NAO EVADE" if pred[0] == 0 else "EVADE")
     return jsonify(output)

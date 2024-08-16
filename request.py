@@ -1,14 +1,10 @@
-#import requests
-
-#url = 'http://localhost:5000/api'
-#r = requests.post(url,json={'SIZE': 7, 'DISTANCE': 190, 'DESIBEL': 86, 'AIRFLOW': 2.2, 'FREQUENCY':5})
-
-#print(r.json())
-
 import requests
 
 url = 'http://localhost:5000/api'
-data = {'SIZE': 7, 'DISTANCE': 190, 'DESIBEL': 86, 'AIRFLOW': 2.2, 'FREQUENCY':5}
+data = {'Idade': 0, 'Sexo': 1, 'ETNIA': 0,
+        'ESTADO_CIVIL': 1, 'I.R.A.': 0,
+        'FORMA_INGRESSO': 0,
+        'Tipo_Escola_Origem': 0}
 
 response = requests.post(url, json=data)
 

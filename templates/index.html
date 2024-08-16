@@ -1,39 +1,91 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Classificador de Extinção de Incêndio</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-  
+  <title>Classificador de Evasão Estudantil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
 </head>
-
-<body style="background: red">
- <div class="login">
-  <!--<img src="../imagem/img.jpg" width="150" height="70">-->
-	<h1>Classificador de Extinção de Incêndio</h1>
-  
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}" method="post">
-    <input type="text" name="SIZE" placeholder="TAMANHO" required="required" />
-    <input type="text" name="DISTANCE" placeholder="DISTANCIA" required="required" />
-		<input type="text" name="DESIBEL" placeholder="DESIBEL" required="required" />
-		<input type="text" name="AIRFLOW" placeholder="AIRFLOW" required="required" />
-    <input type="text" name="FREQUENCY" placeholder="FREQUENCIA" required="required" />
-
-        <!--class="btn btn-primary btn-block btn-large"-->
-        <button type="submit" class="btnSubmit">Classificar Extinção Incendio</button>
+<body>
+  <div class="login">
+    <h1>Classificador de Evasão Estudantil BSI: IFSULMINAS - MACHADO/MG</h1>
+    <form id="classifyForm" action="{{ url_for('predict')}}" method="post">
+      <div class="radio-container">
+        <label>Idade entre 18 - 25 anos?</label>
+        <input type="radio" name="Idade" value="1" required="required"> Sim
+        <input type="radio" name="Idade" value="0" required="required"> Não
+      </div>
+      <div class="radio-container">
+        <label>Sexo Masculino? </label>
+        <input type="radio" name="Sexo" value="1" required="required"> Sim
+        <input type="radio" name="Sexo" value="0" required="required"> Não
+      </div>
+      <div class="radio-container">
+        <label>Etnia branca?</label>
+        <input type="radio" name="Etnia" value="1" required="required"> Sim
+        <input type="radio" name="Etnia" value="0" required="required"> Não
+      </div>
+      <div class="radio-container">
+        <label>Solteiro (a)? </label>
+        <input type="radio" name="Solteiro" value="1" required="required"> Sim
+        <input type="radio" name="Solteiro" value="0" required="required"> Não
+      </div>
+      <div class="radio-container">
+        <label>I.R.A. > = 6? </label>
+        <input type="radio" name="I.R.A." value="1" required="required"> Sim
+        <input type="radio" name="I.R.A." value="0" required="required"> Não
+      </div>
+      <div class="radio-container">
+        <label>Ingresso Ampla concorrência?</label>
+        <input type="radio" name="FORMA_INGRESSO" value="1" required="required"> Sim
+        <input type="radio" name="FORMA_INGRESSO" value="0" required="required"> Não
+      </div>
+      <div class="radio-container">
+        <label>Origem escola privada?</label>
+        <input type="radio" name="Tipo_Escola_Origem" value="1" required="required"> Sim
+        <input type="radio" name="Tipo_Escola_Origem" value="0" required="required"> Não
+      </div>
+      <button type="submit" class="btnSubmit">Classificar</button>
+      <button type="button" id="clearButton" class="btnSubmit" onclick="clearForm()">Limpar</button><div id="res">{{ prediction_text }}</div>
+      
     </form>
+  </div>
 
-   <br>
-   <br>
-   {{ prediction_text }}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      
+      loadFormData();
 
- </div>
+      $("#classifyForm").submit(function(event) {
+        saveFormData();
+      });
+    });
 
+    function saveFormData() {
+      var formData = {};
+      $("#classifyForm input[type='radio']:checked").each(function() {
+        formData[$(this).attr('name')] = $(this).val();
+      });
+      localStorage.setItem('formData', JSON.stringify(formData));
+    }
 
+    function loadFormData() {
+      var formData = JSON.parse(localStorage.getItem('formData'));
+      if (formData) {
+        $.each(formData, function(key, value) {
+          $("input[name='" + key + "'][value='" + value + "']").prop('checked', true);
+        });
+      }
+    }
+
+    function clearForm() {
+      $('input[type="radio"]').prop('checked', false);
+      $("#result").html('');
+      localStorage.removeItem('formData'); 
+    }
+  </script>
 </body>
 </html>
