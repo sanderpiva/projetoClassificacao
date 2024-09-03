@@ -1,10 +1,10 @@
 import requests
 
 url = 'http://localhost:5000/api'
-data = {'Idade': 0, 'Sexo': 1, 'ETNIA': 0,
-        'ESTADO_CIVIL': 1, 'I.R.A.': 0,
+data = {'Idade': 0, 'Sexo': 1, 'Etnia': 1,
+        'NecessidadeAuxilio': 1, 'I.R.A.': 0,
         'FORMA_INGRESSO': 0,
-        'Tipo_Escola_Origem': 0}
+        'Tipo_Escola_Origem': 1}
 
 response = requests.post(url, json=data)
 
