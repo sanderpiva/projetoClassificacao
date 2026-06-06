@@ -22,7 +22,7 @@ from sklearn.ensemble import VotingClassifier
 """**1- Carregando dados**"""
 
 #data = pd.read_excel("/content/Relatorio.xls")
-data = pd.read_excel("C:/Users/Sander/Documents/1set2024_modelo/Relatorio.xls")
+data = pd.read_excel("INSIRA_AQUI_O_CAMINHO_DO_SEU_ARQUIVO_RELATORIO.xls")
 
 #data.head()
 
