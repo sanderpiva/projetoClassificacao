@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+h1 {
+  color:black;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  font-size: 20px;
+  padding-top: 125px;
+  padding-left: 5px;
+  
+}
+
+body {
+  
+  background-color: white;
+  color: black;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  
+}
+
+form{
+  border-style: groove;
+  font-weight: 400;
+  font-style: normal;
+  padding-left: 1px;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  padding-right: 1px;
+}
+
+.login {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.radio-container label {
+  flex: 1;
+  text-align: left;
+}
+
+.radio-group {
+  flex: 2;
+  display: flex;
+  justify-content: space-around;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .login {
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+  }
+}
+
+.btnSubmit {
+  font-weight: bold;
+  background-color: orange;
+  color: black;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 1.5s;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 4px;
+}
+
+.btnSubmit:hover {
+  color: white;
+  background-color: green;
+  cursor: pointer;
+}
+
+#res{
+
+  padding-top: 10px;
+  padding-left: 15px;
+}
